@@ -51,6 +51,7 @@ RUN cd /Downloads && \
     mkdir BROCCOLI && \
     cd BROCCOLI && \
     git clone --depth 1 https://github.com/wanderine/BROCCOLI.git . && \
+		git checkout 00a5c298e13e79b65cf5696c5ba699a30ad6d00e && \
     cd code && \
     cd BROCCOLI_LIB && \
     ./compile_broccoli_library.sh && \
@@ -75,7 +76,7 @@ RUN cd /Downloads/BROCCOLI/code/bids && \
     . /usr/local/fsl/etc/fslconf/fsl.sh
 
 RUN curl --silent --location https://rpm.nodesource.com/setup_4.x | bash - && \
-    yum install -y nodejs
+yum install -y nodejs
 RUN npm install -g bids-validator
 
 ENTRYPOINT ["/Downloads/BROCCOLI/code/bids/broccolipipeline.sh"]
