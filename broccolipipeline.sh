@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 function analyze_subject {
 
@@ -103,14 +104,16 @@ else
     exit 1
 fi
 
+bids-validator $bids_dir
+
 single_subject=0
 
 # fourth optional argument, participant label
 if [ $# -ge 4 ]; then
     fourth_argument=$4
 
-    if [ "$fourth_argument" != "--participant-label" ]; then
-        echo "Fourth argument must be '--participant-label'"
+    if [ "$fourth_argument" != "--participant_label" ]; then
+        echo "Fourth argument must be '--participant_label'"
         exit 1
     else
         single_subject=1
@@ -119,7 +122,7 @@ fi
 
 
 if [ $# -eq 4 ]; then
-    echo "participant-label cannot be empty!"
+    echo "participant_label cannot be empty!"
     exit 1
 fi
 
@@ -198,8 +201,3 @@ elif [ "$analysis_type" == "group" ]; then
     RandomiseGroupLevel allcopes -groupmean -mask MNI152_T1_2mm_brain_mask.nii.gz -output $output_dir/group/
 
 fi
-
-
-
-
-
