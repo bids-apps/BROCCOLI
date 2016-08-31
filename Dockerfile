@@ -88,4 +88,6 @@ RUN npm install -g bids-validator
 COPY broccolipipeline.sh /Downloads/BROCCOLI/code/bids/broccolipipeline.sh
 RUN chmod +x /Downloads/BROCCOLI/code/bids/broccolipipeline.sh
 
+COPY version /version
+
 ENTRYPOINT ["/Downloads/BROCCOLI/code/bids/broccolipipeline.sh"]
