@@ -79,4 +79,6 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_4.x | bash - && \
 yum install -y nodejs
 RUN npm install -g bids-validator
 
+COPY version /version
+
 ENTRYPOINT ["/Downloads/BROCCOLI/code/bids/broccolipipeline.sh"]
