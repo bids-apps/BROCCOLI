@@ -51,7 +51,7 @@ RUN cd /Downloads && \
     mkdir BROCCOLI && \
     cd BROCCOLI && \
     git clone --depth 1 https://github.com/wanderine/BROCCOLI.git . && \
-    git checkout b787d117f9b93bc642c61ad53984135f3039d44d && \
+    git checkout aa3d01213fbdafc9773ec04a7cb6a28348d9c7bc && \
     cd code && \
     cd BROCCOLI_LIB && \
     ./compile_broccoli_library.sh && \
