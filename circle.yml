@@ -35,9 +35,9 @@ test:
             timeout: 21600
         - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds005_R1.1.0:/bids_dataset -v ${HOME}/outputs/ds005:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group  :
             timeout: 21600
-        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds008_R1.1.0:/bids_dataset -v ${HOME}/outputs/ds008:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant  :
+        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds008_R1.1.1:/bids_dataset -v ${HOME}/outputs/ds008:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant  :
             timeout: 21600
-        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds008_R1.1.0:/bids_dataset -v ${HOME}/outputs/ds008:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group  :
+        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds008_R1.1.1:/bids_dataset -v ${HOME}/outputs/ds008:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group  :
             timeout: 21600
 
 
