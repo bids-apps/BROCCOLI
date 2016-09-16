@@ -25,7 +25,9 @@ dependencies:
 
 test:
     override:
-        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds007:/bids_dataset -v ${HOME}/outputs/ds007:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant  :
+        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds007:/bids_dataset -v ${HOME}/outputs/ds007:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 01 02  :
+            timeout: 41600
+        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds007:/bids_dataset -v ${HOME}/outputs/ds007:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 03  :
             timeout: 41600
         - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds007:/bids_dataset -v ${HOME}/outputs/ds007:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group  :
             timeout: 41600
