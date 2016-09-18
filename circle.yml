@@ -1,7 +1,6 @@
 general:
     artifacts:
-        - "~/outputs1"
-        - "~/outputs2"
+        - "~/outputs"
 machine:
     services:
         - docker
@@ -18,10 +17,7 @@ dependencies:
         - docker build -t bids/${CIRCLE_PROJECT_REPONAME,,} . :
             timeout: 21500
         - mkdir -p ~/docker; docker save "bids/${CIRCLE_PROJECT_REPONAME,,}" > ~/docker/image.tar
-        - mkdir -p ${HOME}/outputs
         - mkdir -p ${HOME}/outputs/ds007
-        - mkdir -p ${HOME}/outputs/ds008
-        - mkdir -p ${HOME}/outputs/ds005
 
 test:
     override:
@@ -29,7 +25,7 @@ test:
             timeout: 41600
         - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds007:/bids_dataset -v ${HOME}/outputs/ds007:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs participant --participant_label 03  :
             timeout: 41600
-        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds007:/bids_dataset -v ${HOME}/outputs/ds007:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group  :
+        - docker run -ti --rm --read-only -v /tmp:/tmp -v /var/tmp:/var/tmp -v ${HOME}/data/ds007:/bids_dataset -v ${HOME}/outputs/ds007:/outputs bids/${CIRCLE_PROJECT_REPONAME,,} /bids_dataset /outputs group --participant_label 01 02 03 :
             timeout: 41600
 
 
