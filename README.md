@@ -12,7 +12,7 @@ Experiencing problems? Please open an [issue](https://github.com/wanderine/BROCC
 
 ##Acknowledgement
 
-When using this pipeline, please acknowledge us by citing 
+When using this pipeline, please acknowledge us by citing
 
 [Eklund, A., Dufort, P., Villani, M., LaConte, S., BROCCOLI: Software for Fast fMRI Analysis on Many-Core CPUs and GPUs, Frontiers in Neuroinformatics, 8:24, 2014](http://journal.frontiersin.org/Journal/10.3389/fninf.2014.00024/abstract)
 
@@ -29,3 +29,8 @@ In your terminal, type:
 ```{bash}
 $ docker pull bids/broccoli
 ```
+
+
+### Commercial use
+
+This BIDS App is using [FSL](https://fsl.fmrib.ox.ac.uk/). If you are considering commercial use of this App please consult the relevant licenses.
