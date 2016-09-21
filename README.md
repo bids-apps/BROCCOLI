@@ -18,7 +18,7 @@ When using this pipeline, please acknowledge us by citing
 
 ##Usage
 
-Command-line usage of the processing script broccolipipeline.sh is as follows:
+Command-line usage of the processing script [broccolipipeline.sh](https://github.com/wanderine/BROCCOLI/blob/master/code/bids/broccolipipeline.sh) is as follows:
 
 #### Synopsis
 
