@@ -16,18 +16,64 @@ When using this pipeline, please acknowledge us by citing
 
 [Eklund, A., Dufort, P., Villani, M., LaConte, S., BROCCOLI: Software for Fast fMRI Analysis on Many-Core CPUs and GPUs, Frontiers in Neuroinformatics, 8:24, 2014](http://journal.frontiersin.org/Journal/10.3389/fninf.2014.00024/abstract)
 
+##Usage
+
+Command-line usage of the processing script broccolipipeline.sh is as follows:
+
+#### Synopsis
+
+    ./broccolipipeline.sh bids_dir output_dir analysis_level
+
+-  *bids_dir*: The directory with the input dataset formatted according to the BIDS standard.
+-  *output_dir*: The directory where the output files should be stored. If you are running group level analysis, this folder should be prepopulated with the results of the participant level analysis.
+-  *analysis_level*: Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel) using the same output_dir. Options are: participant and group.
+
+## Options
+
+#### Options specific to the batch processing of subject data
+
++ **---participant_label**<br>The label(s) of the participant(s) that should be analyzed. The label(s) correspond(s) to sub-<participant_label> from the BIDS spec (so it does _not_ include "sub-"). If this parameter is not provided, all subjects will be analyzed sequentially. Multiple participants can be specified with a space-separated list.
+
+
+
 ##Instructions
 
-The bids/broccoli Docker container enables users to run fMRI analyses in parallel using OpenCL. The pipeline requires that data be organized in accordance with the BIDS spec. If the data you wish to process is available on S3 you simply need to provide your s3 credentials at build time and the pipeline will auto-retrieve your data for processing.
+The bids/broccoli Docker container enables users to run fMRI analyses in parallel using OpenCL. The pipeline requires that data be organized in accordance with the BIDS specification.
 
-To get your container ready to run just follow these steps:
-
-(A) I do not wish to use S3:
-
-In your terminal, type:
+To get a Docker container with BROCCOLI pre-installed, run
 
 ```{bash}
-$ docker pull bids/broccoli
+$ docker pull bids/broccoli:v1.0.0
+```
+
+To run a first level analysis of all subjects in a BIDS dataset, run
+
+```{bash}
+$ docker run -i --rm \
+    -v /Users/yourname/data/ds005:/bids_dataset \
+    -v /Users/yourname/outputs:/outputs \
+    bids/broccoli:v1.0.0 \
+    /bids_dataset /outputs participant 
+```
+
+To run a first level analysis of subject 01 only, run
+
+```{bash}
+$ docker run -i --rm \
+    -v /Users/yourname/data/ds005:/bids_dataset \
+    -v /Users/yourname/outputs:/outputs \
+    bids/broccoli:v1.0.0 \
+    /bids_dataset /outputs participant --participant_label 01
+```
+
+To run a group analysis of all subjects, run
+
+```{bash}
+$ docker run -i --rm \
+    -v /Users/yourname/data/ds005:/bids_dataset \
+    -v /Users/yourname/outputs:/outputs \
+    bids/broccoli:v1.0.0 \
+    /bids_dataset /outputs group
 ```
 
 
