@@ -75,9 +75,9 @@ RUN cd /Downloads/BROCCOLI/code/bids && \
     python2.6 fslinstaller.py -q -d /usr/local && \
     . /usr/local/fsl/etc/fslconf/fsl.sh
 
-RUN curl --silent --location https://rpm.nodesource.com/setup_4.x | bash - && \
+RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash - && \
     yum install -y nodejs
-RUN npm install -g bids-validator
+RUN npm install -g bids-validator@0.21.1
 
 COPY version /version
 
