@@ -1,8 +1,8 @@
-##Description
+## Description
 
 BROCCOLI is a software for analysis of fMRI (functional magnetic resonance imaging) data and is written in OpenCL (Open Computing Language). The analysis can thereby be performed in parallel on many types of hardware, such as CPUs, Nvidia GPUs and AMD GPUs. The result is a significantly faster analysis than possible with other software packages for fMRI analysis. For example, non-linear normalization of an anatomical T1 volume to MNI space (1mm resolution) takes only 4-8 seconds with a GPU.
 
-##Documentation
+## Documentation
 
 Please read the official [BROCCOLI](https://github.com/wanderine/BROCCOLI/raw/master/documentation/broccoli.pdf) documentation
 
@@ -10,13 +10,13 @@ Please read the official [BROCCOLI](https://github.com/wanderine/BROCCOLI/raw/ma
 
 Experiencing problems? Please open an [issue](https://github.com/wanderine/BROCCOLI/issues/new)
 
-##Acknowledgement
+## Acknowledgement
 
 When using this pipeline, please acknowledge us by citing
 
 [Eklund, A., Dufort, P., Villani, M., LaConte, S., BROCCOLI: Software for Fast fMRI Analysis on Many-Core CPUs and GPUs, Frontiers in Neuroinformatics, 8:24, 2014](http://journal.frontiersin.org/Journal/10.3389/fninf.2014.00024/abstract)
 
-##Usage
+## Usage
 
 Command-line usage of the processing script [broccolipipeline.sh](https://github.com/wanderine/BROCCOLI/blob/master/code/bids/broccolipipeline.sh) is as follows:
 
