@@ -53,7 +53,7 @@ $ docker run -i --rm \
     -v /Users/yourname/data/ds005:/bids_dataset \
     -v /Users/yourname/outputs:/outputs \
     bids/broccoli:v1.0.0 \
-    /bids_dataset /outputs participant 
+    /bids_dataset /outputs participant
 ```
 
 To run a first level analysis of subject 01 only, run
