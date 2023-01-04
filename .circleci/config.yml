@@ -4,15 +4,12 @@ version: 2.1
 jobs:
   build:
     machine:
-      # https://circleci.com/developer/machine/image/ubuntu-2204
       image: ubuntu-2204:2022.10.2
-
     steps:
     - checkout
     - restore_cache:
         keys:
         - my_cache
-
     - run:
         name: 'Get test data: ds007'
         command: |
@@ -24,24 +21,17 @@ jobs:
     - run:
         name: Build Docker image
         command: |
-          git describe --tags --always > version
-          docker build -t bids/${CIRCLE_PROJECT_REPONAME,,} .
-          mkdir -p ${HOME}/docker
-          docker save "bids/${CIRCLE_PROJECT_REPONAME,,}" > ~/docker/image.tar
-
+          wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/build_docker.sh
+          bash build_docker.sh  
     - save_cache:
         key: my_cache
         paths:
         - ~/docker
         - ~/data
-
     - persist_to_workspace:
         root: ~/docker
         paths:
         - image.tar
-
-
-
 
   test:
     docker:
@@ -49,11 +39,9 @@ jobs:
     steps:
     - attach_workspace:
         at: /tmp/workspace
-
     - run: mkdir -p ${HOME}/outputs/ds007
-
     - run:
-        name: push to dockerhub
+        name: participant 01 02
         command: |
           docker run -ti --rm \
             -v /tmp/workspace/data/ds007:/bids_dataset \
@@ -61,9 +49,8 @@ jobs:
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs participant --participant_label 01 02
         no_output_timeout: 6h
-
     - run:
-        name: push to dockerhub
+        name: participant 03
         command: |
           docker run -ti --rm \
             -v /tmp/workspace/data/ds007:/bids_dataset \
@@ -71,9 +58,8 @@ jobs:
               bids/${CIRCLE_PROJECT_REPONAME,,} \
                 /bids_dataset /outputs participant --participant_label 03
         no_output_timeout: 6h
-
     - run:
-        name: push to dockerhub
+        name: group level
         command: |
           docker run -ti --rm \
             -v /tmp/workspace/data/ds007:/bids_dataset \
@@ -88,17 +74,12 @@ jobs:
     steps:
     - attach_workspace:
         at: /tmp/workspace
-
     - run: docker load -i /tmp/workspace/docker/image.tar
     - run:
         name: push to dockerhub
         command: |
-          docker login --username ${DOCKER_USER} --password ${DOCKER_PASS}
-          docker push bids/${CIRCLE_PROJECT_REPONAME,,}:latest
-          if [[ -n "${CIRCLE_TAG}" ]]; then
-            docker tag bids/${CIRCLE_PROJECT_REPONAME,,} bids/${CIRCLE_PROJECT_REPONAME,,}:${CIRCLE_TAG}
-            docker push bids/${CIRCLE_PROJECT_REPONAME,,}:${CIRCLE_TAG}
-          fi
+          wget https://raw.githubusercontent.com/bids-apps/maintenance-tools/main/circleci/push_docker.sh
+          bash push_docker.sh  
 
 workflows:
   build-test-deploy:
