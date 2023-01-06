@@ -34,8 +34,8 @@ jobs:
             - docker/image.tar
 
   test:
-    docker:
-      - image: ubuntu-2204:2022.10.2
+    machine:
+      image: ubuntu-2204:2022.10.2
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -69,8 +69,8 @@ jobs:
           no_output_timeout: 6h
 
   deploy:
-    docker:
-      - image: ubuntu-2204:2022.10.2
+    machine:
+      image: ubuntu-2204:2022.10.2
     steps:
       - attach_workspace:
           at: /tmp/workspace
@@ -94,3 +94,5 @@ workflows:
           filters:
             tags:
               only: /.*/
+
+# VS Code Extension Version: 1.5.1
